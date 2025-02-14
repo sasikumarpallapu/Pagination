@@ -5,7 +5,7 @@ const UserList = () => {
   const [users, setUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const usersPerPage = 3;
-  
+
   useEffect(() => {
     fetch("https://dummyjson.com/users")
       .then((response) => response.json())
@@ -24,6 +24,14 @@ const UserList = () => {
     }
   };
 
+  // Logic to display only 3 page numbers at a time
+  let startPage = Math.max(1, currentPage - 1);
+  let endPage = Math.min(totalPages, startPage + 2);
+
+  if (endPage - startPage < 2) {
+    startPage = Math.max(1, endPage - 2);
+  }
+
   return (
     <div className="container">
       <div className="content-wrapper">
@@ -36,29 +44,41 @@ const UserList = () => {
             </div>
           ))}
         </div>
-        <div className="pagination-controls" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px' }}>
-          <button 
-            onClick={() => goToPage(currentPage - 1)} 
-            disabled={currentPage === 1} 
-            className="btn">
+
+        {/* Pagination Controls */}
+        <nav aria-label="pagination" className="pagination-controls">
+          <button
+            onClick={() => goToPage(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="btn"
+          >
             Previous
           </button>
-          {[...Array(totalPages)].map((_, index) => (
-            <button 
-              key={index + 1} 
-              onClick={() => goToPage(index + 1)} 
-              className={`btn pagination-btn ${currentPage === index + 1 ? 'active-page' : ''}`}
-              style={{ background: currentPage === index + 1 ? '#007bff' : 'transparent', color: currentPage === index + 1 ? 'white' : '#007bff', border: '2px solid #007bff', margin: '0 5px' }}>
-              {index + 1}
-            </button>
-          ))}
-          <button 
-            onClick={() => goToPage(currentPage + 1)} 
-            disabled={currentPage === totalPages} 
-            className="btn">
+
+          {/* Display only 3 page numbers */}
+          {[...Array(endPage - startPage + 1)].map((_, index) => {
+            const pageNumber = startPage + index;
+            return (
+              <button
+                key={pageNumber}
+                onClick={() => goToPage(pageNumber)}
+                className={`btn pagination-btn ${
+                  currentPage === pageNumber ? "active-page" : ""
+                }`}
+              >
+                {pageNumber}
+              </button>
+            );
+          })}
+
+          <button
+            onClick={() => goToPage(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className="btn"
+          >
             Next
           </button>
-        </div>
+        </nav>
       </div>
     </div>
   );

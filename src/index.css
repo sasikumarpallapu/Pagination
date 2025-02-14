@@ -1,0 +1,90 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  
+}
+.page-header{
+  text-align: center;
+}
+.content-wrapper {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  width: 100%;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+
+}
+
+.card {
+  border: 1px solid #1b0505;
+  padding: 20px;
+  border-radius: 8px;
+  width: 500px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: #e4c9c9;
+  text-align: left;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+button {
+  padding: 8px 12px;
+   margin: '0 5px';
+  border: none;
+  background-color: #00ffb7;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  .btn:hover {
+    background-color: #0056b3;
+    color: white;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .pagination-btn:hover {
+    background-color: #007bff;
+    color: white;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .active-page {
+    background-color: #007bff !important;
+    color: white !important;
+    font-weight: bold;
+  }
+  
+
+.btn-grad {background-image: linear-gradient(to right, #16222A 0%, #3A6073  51%, #16222A  100%)}
+.btn-grad {
+   margin: 10px;
+   padding: 15px 45px;
+   text-align: center;
+   text-transform: uppercase;
+   transition: 0.5s;
+   background-size: 200% auto;
+   color: white;            
+   box-shadow: 0 0 20px #eee;
+   border-radius: 10px;
+   display: block;
+ }
+
+ 
